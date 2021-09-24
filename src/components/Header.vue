@@ -7,8 +7,8 @@
       </div>
       <!----------- SEARCH----- -->
       <div class="search">
-        <input type="text" placeholder="Search films">
-        <button class="btn-search">
+        <input type="text" placeholder="Search films" v-model="inputText">
+        <button class="btn-search" @click="getName" @click.prevent="getFilmList">
           Search
         </button>
       </div>
@@ -21,8 +21,22 @@
 <script>
 export default {
   name: 'Header',
-  props: {
+  props: [
     
+  ],
+  data() {
+    return {
+      inputText:'',
+    }
+  },
+  methods: {
+    getName() {
+      this.$emit('getName',this.inputText.toLowerCase())
+
+    },
+    getFilmList() {
+      this.$emit('getFilmList')
+    },
   }
 }
 </script>
@@ -47,6 +61,7 @@ export default {
       color: $white;
       border: none;
       padding: 5px;
+      cursor: pointer;
     }
   }
   input {

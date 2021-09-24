@@ -1,6 +1,13 @@
 <template>
-  <main>
+  <main class="clearfix">
       <div class="container">
+          <div class="film" v-for="(film,index) in filmlist" :key="index">
+              <p> Title: {{film.title}}</p>
+              <p> Original title: {{film.original_title}}</p>
+              <p> Language: {{film.original_language}}</p>
+              <p> Vote: {{film.vote_average}}</p>
+             
+          </div> 
 
       </div>
 
@@ -10,9 +17,7 @@
 <script>
 export default {
   name: 'Main',
-  props: {
-    
-  }
+  props: ['filmlist']
 }
 </script>
 
@@ -23,7 +28,12 @@ export default {
         background-color: $greysh;
         width: 100vw;
         height: calc(100vh - 100px);
-        overflow: hidden;
+        
+    }
+    .film {
+        background-color: $white;
+        margin: 5px;
+
     }
   
 
