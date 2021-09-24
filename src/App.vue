@@ -1,28 +1,47 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <Header />
+    <Main />
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import Header from './components/Header.vue'
+import Main from './components/Main.vue'
+import axios from 'axios'
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
-  }
+    Header, Main,
+  },
+  data() {
+    return {
+      APIUrl: ''
+    }
+  },
+  created(){
+    this.getFilm();
+  },
+  methods:{
+    getFilm(){
+      axios.get(this.APIUrl).then(ris=>{
+        this.disclist = ris.data.response;
+        
+      })
+    }
+ /*  methods: {
+    get
+  } */
+}
 }
 </script>
 
 <style lang="scss">
+
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+  width: 100vw;
+  height: 100vh;
+
 }
 </style>
