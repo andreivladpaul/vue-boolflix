@@ -1,15 +1,31 @@
 <template>
   <main class="clearfix">
-      <div class="container">
-          <div class="film" v-for="(film,index) in filmlist" :key="index">
-              <p> Title: {{film.title}}</p>
-              <p> Original title: {{film.original_title}}</p>
-              <p class="language d-flex-align-center"> Language: 
-                  <country-flag :country='showLang(film.original_language)' size='normal'/>
-              </p>
-              <p> Vote: {{film.vote_average}}</p>
-             
-          </div> 
+      <div class="container ">
+          <div class="films">
+                <h1>Film</h1>
+
+                <div class="film-section">
+                    <li class="film " v-for="(film,index) in filmlist" :key="index">
+                        <Film :film="film" />
+                    </li>   
+                </div>
+                
+          </div>
+
+          <div class="series">
+                <h1>TV Series</h1>
+                <div class="serie-section">
+                    <li class="film " v-for="(serie,index) in serielist" :key="index">
+                        <Serie :serie="serie" />
+                    </li>
+                </div>
+                
+          </div>
+          
+          
+           
+
+          
 
       </div>
 
@@ -17,22 +33,18 @@
 </template>
 
 <script>
-import CountryFlag from 'vue-country-flag';
+import Film from './Film.vue'
+import Serie from './Serie.vue'
 
 export default {
   name: 'Main',
-  props: ['filmlist'],
+  props: ['filmlist', 'serielist'],
   components: {
-      CountryFlag
+     Film,
+     Serie
   },
   methods: {
-      showLang(lang) {
-          if(lang == 'de') return 'de'
-          else if (lang == 'en')  return 'gb'
-          else if (lang == 'ja')  return 'jp'
-          else return lang
-
-      }
+      
   }
 }
 </script>
@@ -44,16 +56,33 @@ export default {
         background-color: $greysh;
         width: 100vw;
         height: calc(100vh - 100px);
-        
-    }
-    .film {
-        background-color: $light-greysh;
-        margin: 5px;
-        
-       
+
+        .container, .film-section, .serie-section {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
 
 
+        }
+        .container {
+            .films, .series {
+                text-align: center;
+
+                h1 {
+                color: $red;
+                margin: 20px 0 ;
+                }
+            }
+            
+        }
+
+        .film {
+            list-style: none;
+        }
+        
     }
+    
   
 
 </style>

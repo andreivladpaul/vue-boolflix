@@ -7,9 +7,9 @@
       </div>
       <!----------- SEARCH----- -->
       <div class="search">
-        <input type="text" placeholder="Search films" v-model="inputText">
-        <button class="btn-search" @click="getName" @click.prevent="getFilmList">
-          Search
+        <input type="text" placeholder="Search films" v-model="inputText" autofocus autocomplete="">
+        <button class="btn-search" @click="getName" @click.prevent="getFilmList" >
+          Search 
         </button>
       </div>
     </div>
