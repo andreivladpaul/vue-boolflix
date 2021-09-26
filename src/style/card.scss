@@ -1,26 +1,98 @@
 @import '../style/general.scss';
 
-.card {
-    .info {
-        background-color: $light-greysh;
-        width: 100%;
-        height: 100%;
-        text-align: start; 
+body {
+    ::-webkit-scrollbar {
+        width: 10px;
+        
     }
-    
+      
+      /* Track */
+    ::-webkit-scrollbar-track {
+        background: transparent;
+    }
+      
+      /* Handle */
+    ::-webkit-scrollbar-thumb {
+        background: transparent;
+    }
+      
+      /* Handle on hover */
+    ::-webkit-scrollbar-thumb:hover {
+        background: #555;
+        border-radius: 20px;
+    }
+  }
+
+.card-container {
     margin: 15px;
     float: left;
     width: 300px;
     height: 400px;
-    text-align: start;
+    perspective: 900px;
+
+    &:hover .card {
+        transform: rotateY(180deg);
+    }
+   
+
+    .card {
+        width: 100%;
+        height: 100%;
+        position: relative;
+        
+        transition: all 0.6s ease;
+        transform-style: preserve-3d;
+
+        .front, .back {
+            position: absolute;
+            top: 0;
+            left: 0;
+            box-shadow: 0 27px 55px 0 rgba(0, 0, 0, 0.3), 0 17px 17px 0 rgba(0, 0, 0, 0.15);
+            backface-visibility: hidden;
+        }
+        .front {
+            width: 100%;
+            height: 100%;
+            
+
+
+            img {
+                width: 100%;
+                height: 100%;
+                &.error {
+                    object-fit: cover; 
+                }
+            }
+        }
+        .back {
+            width: 100%;
+            height: 100%;
+            background-color: $light-greysh;
+            text-align: start; 
+            transform: rotateY(180deg);
+            padding: 10px;
+
+            overflow-y: scroll;
+
+            -webkit-scrollbar { visibility: hidden; }
+            
+        }
+    }
+    
+    
     
 
     p {
         padding: 0 0 5px 0;
+        
+        .standard{
+            color: rgba(255, 255, 255, 0.399);
+        }
+
+        .yellow {
+            color: rgb(255, 251, 0);
+        }
     }
 
-    img {
-        width: 100%;
-        height: 100%;
-    }
+    
 }
