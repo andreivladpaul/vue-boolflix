@@ -7,7 +7,7 @@
     />
     
     <Main :filmlist="filmList" 
-          :serielist="serieList" 
+          :serielist="serieList"
           
     />
   </div>
@@ -32,8 +32,7 @@ export default {
       apiURL: 'https://api.themoviedb.org/3/search/',
       apiMovie: 'movie',
       apiSerie: 'tv',
-      apiKeyQuery:'?api_key=5587cb1bcc9fd429c2444a268e12bd61&query='
-      
+      apiKeyQuery:'?api_key=5587cb1bcc9fd429c2444a268e12bd61&query=',
     }
   },
   

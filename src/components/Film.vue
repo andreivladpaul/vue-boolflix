@@ -2,12 +2,17 @@
             
           <div class="card" >
               
-              <p> <b>Title:</b> {{film.title}}</p>
-              <p> <b>Original Title:</b>: {{film.original_title}}</p>
-              <p class="language d-flex-align-center"> 
-                  <b>Language:</b><country-flag :country='showLang(film.original_language)' size='normal'/>
-              </p>
-              <p> <b>Vote:</b> {{film.vote_average}}</p>
+              <img v-if="src !='https://www.themoviedb.org/t/p/w342null'" :src="imgUrl + film.poster_path" alt="">
+
+                <div class="info" v-else>
+                    <p> <b>Title:</b> {{film.title}}</p>
+                    <p> <b>Original Title:</b>: {{film.original_title}}</p>
+                    <p class="language d-flex-align-center"> 
+                        <b>Language:</b><country-flag :country='showLang(film.original_language)' size='normal'/>
+                    </p>
+                    <p> <b>Vote:</b> {{film.vote_average}}</p>
+                </div>
+              
              
           </div> 
 </template>
@@ -17,7 +22,7 @@ import CountryFlag from 'vue-country-flag';
 
 export default {
   name: 'Film',
-  props: ['film'],
+  props: ['film', 'imgUrl'],
   components: {
       CountryFlag
   },
@@ -28,6 +33,10 @@ export default {
           else if (lang == 'ja')  return 'jp'
           else return lang
 
+      },
+      getImg(path) {
+          let imgUrl = imgUrl+path
+          return imgUrl
       }
   }
 }
@@ -35,18 +44,5 @@ export default {
 
 <style lang="scss">
 @import '../style/card.scss';
-
-    .film {
-        background-color: $light-greysh;
-        margin: 5px;
-        float: left;
-        width: 300px;
-        height: 400px;
-        
-       
-
-
-    }
-  
 
 </style>

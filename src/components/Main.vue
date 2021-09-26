@@ -1,32 +1,26 @@
 <template>
   <main class="clearfix">
       <div class="container ">
+          <!-- FILMS -->
           <div class="films">
                 <h1>Film</h1>
-
                 <div class="film-section">
                     <li class="film " v-for="(film,index) in filmlist" :key="index">
-                        <Film :film="film" />
+                        <Film :film="film" :imgUrl="imgUrl" />
                     </li>   
                 </div>
                 
           </div>
-
+            <!-- SERIE -->
           <div class="series">
                 <h1>TV Series</h1>
                 <div class="serie-section">
                     <li class="film " v-for="(serie,index) in serielist" :key="index">
-                        <Serie :serie="serie" />
+                        <Serie :serie="serie" :imgUrl="imgUrl"  />
                     </li>
                 </div>
                 
           </div>
-          
-          
-           
-
-          
-
       </div>
 
   </main>
@@ -43,7 +37,10 @@ export default {
      Film,
      Serie
   },
-  methods: {
+  data() {
+      return {
+          imgUrl:'https://www.themoviedb.org/t/p/w342'
+      }
       
   }
 }
