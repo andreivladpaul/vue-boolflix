@@ -4,7 +4,9 @@
           <div class="film" v-for="(film,index) in filmlist" :key="index">
               <p> Title: {{film.title}}</p>
               <p> Original title: {{film.original_title}}</p>
-              <p> Language: {{film.original_language}}</p>
+              <p class="language d-flex-align-center"> Language: 
+                  <country-flag :country='showLang(film.original_language)' size='normal'/>
+              </p>
               <p> Vote: {{film.vote_average}}</p>
              
           </div> 
@@ -15,9 +17,23 @@
 </template>
 
 <script>
+import CountryFlag from 'vue-country-flag';
+
 export default {
   name: 'Main',
-  props: ['filmlist']
+  props: ['filmlist'],
+  components: {
+      CountryFlag
+  },
+  methods: {
+      showLang(lang) {
+          if(lang == 'de') return 'de'
+          else if (lang == 'en')  return 'gb'
+          else if (lang == 'ja')  return 'jp'
+          else return lang
+
+      }
+  }
 }
 </script>
 
@@ -31,8 +47,11 @@ export default {
         
     }
     .film {
-        background-color: $white;
+        background-color: $light-greysh;
         margin: 5px;
+        
+       
+
 
     }
   

@@ -5,6 +5,7 @@
 
 //COLORS
 $greysh: #333;
+$light-greysh: rgb(128, 128, 128);
 $red: red;
 $white: #fff;
 
@@ -15,6 +16,10 @@ $white: #fff;
 .d-center {
     display: flex;
     justify-content: center;
+    align-items: center;  
+}
+.d-flex-align-center{
+    display: flex;
     align-items: center;  
 }
 
