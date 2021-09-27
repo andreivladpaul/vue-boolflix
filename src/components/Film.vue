@@ -10,7 +10,7 @@
                     <!-- BACK -->
                     <div class=" back">
                         <p> <b>Title:</b> {{film.title}}</p>
-                        <p> <b>Original Title:</b>: {{film.original_title}}</p>
+                        <p> <b>Original Title:</b> {{film.original_title}}</p>
                         <p class="language d-flex-align-center"> 
                             <b>Language:</b><country-flag :country='showLang(film.original_language)' size='normal'/>
                         </p>
@@ -32,8 +32,6 @@ import CountryFlag from 'vue-country-flag';
 
 export default {
     name: 'Film',
-    maxStars: 5,
-    newVote: '',
     props: ['film', 'imgUrl'],
     components: {
       CountryFlag,

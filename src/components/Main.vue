@@ -4,16 +4,27 @@
           <!-- FILMS -->
           <div class="films">
                 <h1>Film</h1>
-                <div class="film-section">
+                <div v-if="(inputText == '')" class="film-section">
+                    <li class="film " v-for="(film,index) in discoverlist" :key="index">
+                        <Film :film="film" :imgUrl="imgUrl" />
+                    </li>   
+                </div>
+
+                <div v-else class="film-section">
                     <li class="film " v-for="(film,index) in filmlist" :key="index">
                         <Film :film="film" :imgUrl="imgUrl" />
                     </li>   
                 </div>
-                
           </div>
             <!-- SERIE -->
           <div class="series">
                 <h1>TV Series</h1>
+                <div class="serie-section">
+                    <li class="film " v-for="(serie,index) in discoverserie" :key="index">
+                        <Serie :serie="serie" :imgUrl="imgUrl"  />
+                    </li>
+                </div>
+
                 <div class="serie-section">
                     <li class="film " v-for="(serie,index) in serielist" :key="index">
                         <Serie :serie="serie" :imgUrl="imgUrl"  />
@@ -32,7 +43,7 @@ import Serie from './Serie.vue'
 
 export default {
   name: 'Main',
-  props: ['filmlist', 'serielist'],
+  props: ['filmlist', 'serielist', 'discoverlist','inputText', 'discoverserie'],
   components: {
      Film,
      Serie
@@ -54,16 +65,16 @@ export default {
         width: 100vw;
         height: calc(100vh - 100px);
 
-        .container, .film-section, .serie-section {
+        
+        .container {
             display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
-            flex-wrap: wrap;
+            
 
-
-        }
-        .container {
-            .films, .series {
+            .films, 
+            .series {
                 text-align: center;
 
                 h1 {
@@ -71,6 +82,12 @@ export default {
                 margin: 20px 0 ;
                 }
             }
+            .film-section, .serie-section {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+        }
             
         }
 

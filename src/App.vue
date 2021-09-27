@@ -2,13 +2,14 @@
   <div id="app">
     <!-- <button @click="getFilmAfter">film</button> -->
     <Header @getName="getName"
-            @getFilmList="getFilmAfter"
-                          
+            @getFilmList="getFilmAfter"                  
     />
     
     <Main :filmlist="filmList" 
-          :serielist="serieList"
-          
+          :serielist="serieList" 
+          :discoverlist="discoverList"
+          :discoverserie="discoverSerie"
+          :inputText="inputText" 
     />
   </div>
 </template>
@@ -25,6 +26,10 @@ export default {
   },
   data() {
     return {
+      discoverList: [],
+      discoverSerie: [],
+      discoverApi: 'https://api.themoviedb.org/3/discover/movie?api_key=5587cb1bcc9fd429c2444a268e12bd61&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&with_watch_monetization_types=free',
+      discoverSerieApi: 'https://api.themoviedb.org/3/discover/tv?api_key=5587cb1bcc9fd429c2444a268e12bd61&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&with_watch_monetization_types=free',
       APIUrl: '',
       filmList: [],
       serieList: [],
@@ -35,8 +40,22 @@ export default {
       apiKeyQuery:'?api_key=5587cb1bcc9fd429c2444a268e12bd61&query=',
     }
   },
+  created() {
+    this.discoverFilm();
+    this.discoverSerieList()
+  },
   
   methods:{
+    discoverFilm() {
+      axios
+        .get(this.discoverApi)
+          .then(res=>{ this.discoverList = res.data.results;})
+    },
+    discoverSerieList() {
+      axios
+        .get(this.discoverSerieApi)
+          .then(res=>{ this.discoverSerie = res.data.results;})
+    },
 
     getFilmAfter(){
       setTimeout(this.getFilm,10)
